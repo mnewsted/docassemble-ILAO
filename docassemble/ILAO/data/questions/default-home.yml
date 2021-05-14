@@ -1,0 +1,32 @@
+metadata:
+  title url: https://www.illinoislegalaid.org 
+  title: ILAO Easy Forms
+  short title: ILAO Easy Forms
+  logo: |
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Easy Forms</h1>
+---
+modules:
+  - .toolbox
+---
+include:
+  - docassemble.ILAO:shared-basic-questions.yml
+---
+terms: 
+  - "Easy Forms :question-circle:": |
+      Easy Forms make it easy to create legal forms and letters. They guide you through a simple interview. You answer questions, and the program does the work.
+---
+features:
+  css: ilao_theme.css
+---
+default screen parts:
+  under: |
+    Questions or comments? [Contact ILAO](https://www.illinoislegalaid.org/contact-us).
+---
+id: home
+mandatory: True
+question: |
+  **ILAO Easy Forms**
+subquestion: |
+  Thank you for your interest in Illinois Legal Aid Online **{Easy Forms :question-circle:}**.
+
+  Looking for forms? Check out the [ILAO Form Library](https://www.illinoislegalaid.org/form-library).

@@ -1,0 +1,153 @@
+---
+objects:
+  - form: DADict
+  - user: Individual
+  - debt_collector: Individual
+
+  - landlord: Individual
+  - property_manager: Individual
+
+---
+terms: 
+  - "Certified Mail :question-circle:": |
+      If you send a letter as Certified Mail, you can see when it was delivered or that a delivery attempt was made. You can purchase Certified Mail at your Post Office.
+  - "creditor :question-circle:": |
+      A creditor is someone you owe money to. Examples: a bank, a credit card company, or a company you bought something from.
+  - ".zip file :question-circle:": |
+      A .zip file is a single file that contains one or more files.
+  - "green words :question-circle:": |
+      This is an example. Click it again to hide this definition.
+  - "section :question-circle:": |
+      Sections can be on the side or top of your screen. "About you" is an example.
+  - "exempt :question-circle:": |
+      If something is exempt from collection, then the courts cannot force you to use it to pay a debt.
+  - "Appearance :question-circle:": |
+      An Appearance tells the court you are participating in the court case. It helps you receive court papers and information about court dates.
+  - "Answer :question-circle:": |
+      An Answer tells the court if you agree with the claims in the Complaint. In some cases you do not need to file an Answer.
+  - "secured :question-circle:": |
+      A loan is secured by property if it is used like collateral for the loan. If the loan is not repaid, the lender can force a sale of the property to get payment.
+  - "Commercial delivery service :question-circle:": |
+      A company like UPS or FedEx can be used to deliver your forms.
+  - "(EFM or EFSP) :question-circle:": |
+      The court's e-filing system is an electronic filing manager (EFM) or an approved electronic filing service provider (EFSP).
+
+---
+id: your name
+question:  |
+  What is your name?
+fields:
+  - First name: user.name.first
+  - Middle name: user.name.middle
+    required: False
+  - Last name: user.name.last
+  - Suffix: user.name.suffix
+    code: |
+      name_suffix()
+    required: False  
+---
+id: your birthdate
+question: |
+  When were you born?
+fields:
+  - Birthdate: user.birthdate
+    datatype: date
+---
+id: your address
+question: |
+  What is your address?
+fields:
+  - Street address: user.address.address
+    address autocomplete: True
+  - Address line 2: user.address.unit
+    required: False
+  - City: user.address.city
+  - State: user.address.state
+    code: |
+      states_list()
+    default: IL      
+  - ZIP code: user.address.zip
+    required: False
+---
+# address question using AL
+id: your address
+sets:
+  - users[0].address.address
+  - users[0].address.city
+  - users[0].address.zip
+question: |
+  What is your address?
+subquestion: |
+  Use an address where you can be contacted.
+fields:
+  - Street address: users[0].address.address
+    address autocomplete: True
+  - Address line 2: users[0].address.unit
+    required: False
+  - City: users[0].address.city
+  - State: users[0].address.state
+    code: |
+      states_list()
+    default: IL      
+  - ZIP code: users[0].address.zip
+---
+# user_ask_role question using AL
+id: is the user the plaintiff or defendant?
+comment: |
+  This question is asked if the interview can be used by both
+  a Plaintiff and a Defendant. It sets the value of `user_role`,
+  `plaintiffs`, `defendants`, `petitioners` and `respondents`.
+  
+  If you know your interview is exclusively
+  used by the Plaintiff or Defendant, set `user_role = 'plaintiff'` or 
+  `user_role='defendant'` in your code.
+question: |
+  Did you start this case, or are you responding to a case
+  that someone else started?
+fields: 
+  - no label: user_ask_role
+    datatype: radio
+    choices:
+      - I started the case: plaintiff
+      - I am responding to a case: defendant
+  - note: |
+      Okay, you are the **Plaintiff** or **Petitioner** in this case. The other 
+      side is the Defendant or Respondent.
+    show if:
+      variable: user_ask_role
+      is: "plaintiff"
+  - note: |
+      Okay, you are the **Defendant** or **Respondent** in this case. The other 
+      side is the Plaintiff or Petitioner.
+    show if:
+      variable: user_ask_role
+      is: "defendant"
+help:
+  label: |
+    How do I know?
+  content: |
+    If you are the first person to file a form in the case, you 
+    started the case. You are the "Plaintiff" or the "Petitioner."
+  
+    If you are responding to a case or court papers someone else filed, you
+    are the "Defendant" or the "Respondent."
+---
+code: |
+  current_interview_url = user_info().filename
+---
+code: |
+  user_has_saved_answers = len(interview_list(filename=current_interview_url)[0]) > 1 if interview_list(filename=current_interview_url) else False
+---
+id: load saved answers
+event: load_answer
+comment: |
+  Docassemble 1.1.44 enabled pagination of interview_list()
+question: |
+  You have saved answers available for this Easy Form.
+subquestion: |
+  % for interview in interview_list(filename=current_interview_url)[0]:
+  * ${'<a class="xyz" href="' + interview_url(i=current_interview_url, session=interview['session']) + '">' +  interview['title'] +  (' (' + interview.get("subtitle",'') + ')' if interview.get('subtitle') else '')  +"</a>" }  Last visited ${format_date(interview['modtime'])}, currently on page **${interview['dict'].get('_internal',{}).get('steps')}**
+  % endfor
+  
+  [View all of your saved online forms](${url_of('interviews')})
+

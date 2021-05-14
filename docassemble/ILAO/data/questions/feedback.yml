@@ -1,0 +1,75 @@
+metadata:
+  title: Feedback
+  short title: Feedback
+  logo: |
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
+---
+include:
+  - docassemble.ILAO:shared-basic-questions.yml
+#  - docassemble.ILAO:ilao-interview-framework.yml
+---
+modules:
+  - .toolbox
+---
+features:
+  css: ilao_theme.css
+---
+default screen parts:
+  under: |
+    If you have more to say, [contact ILAO](https://www.illinoislegalaid.org/contact-us).
+---
+mandatory: True
+code: |
+  user.email
+  if email_sent_ok == True:
+    ending_screen
+---
+id: email forms
+question: |
+  Easy Form feedback
+subquestion: |
+  What's on your mind?
+fields:
+  - Feedback: feedback
+    input type: area
+  - Rate: rating
+    input type: radio
+    choices:
+      - ":thumbs-up: I like this": like
+      - ":thumbs-down: I don't like this": don't like
+    required: False
+  - Email: user.email
+    datatype: email
+    required: False
+continue button label: Submit
+---
+template: forms_email
+subject: |
+  Easy Form feedback
+content: |
+  Easy Form title: ${ url_args.get('easy_form_title') }
+
+  ILAO Easy Form launch page: ${ url_args.get('easy_form_interview') }
+
+  User email: ${ user.email }
+
+  User feedback: ${ feedback }
+  
+  Rating: ${ rating }
+  
+  --- Debug info ---
+
+  Interview page: ${ url_args.get('easy_form_page') }
+  
+  Variable sought (if any): ${ url_args.get('easy_form_variable') }
+  
+---
+code: |
+  email_sent_ok = send_email(to="formsupport@illinoislegalaid.org", template=forms_email)
+---
+id: email ending screen
+event: ending_screen
+question: |
+  Feedback sent
+subquestion: |
+  Thank you for your feedback!

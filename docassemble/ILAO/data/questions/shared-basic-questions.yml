@@ -102,14 +102,13 @@ comment: |
   used by the Plaintiff or Defendant, set `user_role = 'plaintiff'` or 
   `user_role='defendant'` in your code.
 question: |
-  Did you start this case, or are you responding to a case
-  that someone else started?
+  Did you start this case, or are you responding to a case that someone else filed against you?
 fields: 
   - no label: user_ask_role
     datatype: radio
     choices:
       - I started the case: plaintiff
-      - I am responding to a case: defendant
+      - I am responding to a case filed against me: defendant
   - note: |
       Okay, you are the **Plaintiff** or **Petitioner** in this case. The other 
       side is the Defendant or Respondent.
@@ -127,10 +126,10 @@ help:
     How do I know?
   content: |
     If you are the first person to file a form in the case, you 
-    started the case. You are the "Plaintiff" or the "Petitioner."
-  
+    started the case. You are the **Plaintiff** or the **Petitioner.**
+
     If you are responding to a case or court papers someone else filed, you
-    are the "Defendant" or the "Respondent."
+    are the **Defendant** or the **Respondent.**
 ---
 code: |
   current_interview_url = user_info().filename

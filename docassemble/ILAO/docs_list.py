@@ -16,6 +16,7 @@ def docs_list( doc_objects=[] ):
     return None
   
   # Header rows have to exist in order for the markdown to recognize it as a table. Hide it with css.
+  header_hider = '<div class="ilao_header_hider" aria-hidden="true"></div>\n\n'
   rows = docs_list_top( 3 )
   docs_in_zip = []
   for doc_obj in doc_objects:
@@ -23,7 +24,7 @@ def docs_list( doc_objects=[] ):
     docs_in_zip.append(doc_obj["doc"])
   docs_zip_url = zip_file( docs_in_zip, filename="Easy Form files.zip").url_for(attachment=True)
   rows += '\n' + '**Get all your forms in a {.zip file :question-circle:}** | | ' + action_button_html( docs_zip_url, new_window=False, color="primary", label=":file-archive: Download" ) 
-  return rows
+  return header_hider + rows
 
 def docs_list_top( num_columns ):
   '''The top two rows are needed for markdown to recognize the
@@ -54,11 +55,11 @@ def docs_list_row( row_label='Document', doc=False ):
   # Data structure for a possible future development
   buttons = [
     action_button_html( doc.pdf.url_for(inline=True), new_window="True", color="success", label='<i class="far fa-eye"></i> View' ),
-    action_button_html( doc.pdf.url_for(attachment=True), new_window=False, color="primary", label=":file-download: Download" )
+    action_button_html( doc.pdf.url_for(attachment=True), new_window=False, color="primary", label=":download: Download" )
   ]
   
   # Start with the row label then add all the buttons
-  row_str = '<span>:file:&nbsp;&nbsp;' + row_label + '</span>'
+  row_str = '<span class="ilao_doc_title">:file:&nbsp;&nbsp;' + row_label + '</span>'
   for button in buttons:
     row_str += ' | ' + button
 
@@ -84,7 +85,8 @@ def docs_list_css():
   
   return '''
   <style>
-    thead { display: none; }
+    .ilao_header_hider { display: none; } 
+    .ilao_header_hider ~ div thead { display: none; }
     /*.table-striped tbody tr:nth-of-type(odd) { background-color: unset; } */
     td.text-right, th.text-right { width: 7em; }
     .table td, .table th  {
@@ -93,6 +95,8 @@ def docs_list_css():
       /* border-top: unset; */
       vertical-align: middle;
     }
+    
+    .ilao_doc_title{ font-weight: bold; }
     
     .table .btn-darevisit { margin-bottom: 0; }
     /*.table-striped tbody { background-color: rgb( 220, 220, 220 ); }*/  

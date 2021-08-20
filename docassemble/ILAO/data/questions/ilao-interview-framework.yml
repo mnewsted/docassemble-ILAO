@@ -13,7 +13,9 @@ features:
   navigation: True
   question help button: True
   question back button: True
-  css: ilao_theme.css
+  css: 
+    - ilao_theme.css
+    - ilao_docs_table.css
 ---
 default screen parts:
   corner back button label: |

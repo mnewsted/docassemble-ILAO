@@ -1,8 +1,6 @@
 metadata:
   title: Feedback
   short title: Feedback
-  logo: |
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
 ---
 include:
   - docassemble.ILAO:shared-basic-questions.yml
@@ -15,6 +13,8 @@ features:
   css: ilao_theme.css
 ---
 default screen parts:
+  logo: |
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
   under: |
     If you have more to say, [**contact ILAO**](https://www.illinoislegalaid.org/contact-us).
 ---

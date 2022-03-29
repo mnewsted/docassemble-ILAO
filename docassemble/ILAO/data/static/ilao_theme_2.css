@@ -100,7 +100,7 @@ div.progress-bar {
   background-color: #0079d0;
 }
 
-.al-title * {
+.al-title div {
   color: #FFFFFF;
 }
 
@@ -108,6 +108,43 @@ div.progress-bar {
     background-color: #181C36 !important;
 }
 
+.title-row-1 {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.title-row-2 {
+    font-size: .7em;
+    font-weight: normal;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #181C36;
+    border-color: #181C36;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-toggler {
+    color: #fff;
+    border-color: #fff;
+}
+
+.navbar {
+    padding-top: 0.3rem;
+    padding-bottom: .3rem;
+}
+
+.collapse.show {
+    margin-bottom: 1rem;
+}
+
+.daquestionbackbutton {
+    text-decoration: none;
+}
 
 
 /* Set this css variable in an scss file

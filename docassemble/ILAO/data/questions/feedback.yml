@@ -1,10 +1,11 @@
 metadata:
   title: Feedback
   short title: Feedback
-  logo: |
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
+  #logo: |
+  #  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
 ---
 include:
+  - docassemble.AssemblyLine:assembly_line.yml
   - docassemble.ILAO:shared-basic-questions.yml
 #  - docassemble.ILAO:ilao-interview-framework.yml
 ---
@@ -12,11 +13,34 @@ modules:
   - .toolbox
 ---
 features:
-  css: ilao_theme.css
+  css: ilao_theme_2.css
 ---
 default screen parts:
+  logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg">
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ all_variables(special='metadata').get('title','').rstrip() }</div>
+        <div class="title-row-2">${ "Easy Form" }</div>
+      </div>
+    </div> 
+  short logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg">
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ all_variables(special='metadata').get('short title','').rstrip() }</div>
+        <div class="title-row-2">${ "Easy Form" }</div>
+      </div>
+    </div>
+  back button label: |
+    Back
   under: |
     If you have more to say, [**contact ILAO**](https://www.illinoislegalaid.org/contact-us).
+  footer: off
 ---
 mandatory: True
 code: |
@@ -27,6 +51,8 @@ code: |
 id: email forms
 question: |
   Easy Form feedback
+subquestion: |
+  Let us know what you think about the **${ url_args.get('easy_form_title') }** Easy Form.
 fields:
   - Feedback: feedback
     input type: area

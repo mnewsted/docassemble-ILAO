@@ -91,13 +91,18 @@ a
 .btn-success {
   background-color: #007D56;
 }
+
 .daterm {
     cursor: pointer;
     color: #007D56;
     text-decoration:none;
+    text-decoration-line: none;
 }
+
 .daterm:hover {
-  text-decoration: none;
+    color: #007D56;
+    text-decoration: none;
+    text-decoration-line: none;
 }
 
 div.progress-bar {

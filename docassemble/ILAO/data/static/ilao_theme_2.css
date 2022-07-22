@@ -91,9 +91,16 @@ a
 .btn-success {
   background-color: #007D56;
 }
+
 .daterm {
-    cursor: pointer;
-    color: #007D56;
+  cursor: pointer;
+  color: #007D56;
+  text-decoration: underline dotted;
+}
+
+.daterm:hover {
+  color: #007D56;
+  text-decoration: underline dotted;
 }
 
 div.progress-bar {
@@ -146,6 +153,9 @@ div.progress-bar {
     text-decoration: none;
 }
 
+.text-info {
+    color: #0079d0;
+}
 
 /* Set this css variable in an scss file
 :root {

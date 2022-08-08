@@ -1,0 +1,12 @@
+---
+include:
+  - docassemble.EFSPIntegration:unauthenticated_interview.yml
+  - docassemble.ILAO:ilao-interview-framework.yml
+---
+code: |
+  interview_short_title = "Fee Waiver"
+  form_name = "fee waiver"
+  ilao_easy_form_url = "https://www.illinoislegalaid.org/legal-information/fee-waiver"
+  ilao_easy_form_title = "Fee Waiver"
+  user_has_saved_answers = False
+---

@@ -1,7 +1,9 @@
 ---
 include:
   - docassemble.EFSPIntegration:unauthenticated_interview.yml
+  - docassemble.AssemblyLine:assembly_line.yml
   - docassemble.ILAO:ilao-interview-framework.yml
+  - docassemble.ILAO:shared-basic-questions.yml
 ---
 code: |
   interview_short_title = "Fee Waiver"
@@ -10,3 +12,43 @@ code: |
   ilao_easy_form_title = "Fee Waiver"
   user_has_saved_answers = False
 ---
+metadata:
+  title: eFileIL Account
+  short title: efileIL
+  comment: This program helps you tell the court and the other parties that you are participating in a court case.
+---
+default screen parts:
+  logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="Illinois Legal Aid Online's Logo">
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ all_variables(special='metadata').get('title','').rstrip() }</div>
+        <div class="title-row-2">User Management</div>
+      </div>
+    </div> 
+  short logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="Illinois Legal Aid Online's Logo">
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ all_variables(special='metadata').get('short title','').rstrip() }</div>
+        <div class="title-row-2">User Management</div>
+      </div>
+    </div>
+
+  under: ""
+  right: ""
+---
+# overriding a variable from unauth interview to change wording
+variable name: account_action_list
+data: !!omap
+  - register: "Create an efileIL account"
+  - reset_user_password: "Reset your efileIL password"
+  - self_resend_activation: "Resend efileIL activation email"
+---
+variable name: account_registration_choices
+data: !!omap
+  - INDIVIDUAL: Self-represented user

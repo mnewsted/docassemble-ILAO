@@ -87,7 +87,7 @@ fields:
   - State: user.address.state
     code: |
       states_list()
-    default: IL      
+    default: IL
   - ZIP code: user.address.zip
     required: False
 ---
@@ -110,7 +110,7 @@ fields:
   - State: users[0].address.state
     code: |
       states_list()
-    default: IL      
+    default: IL
   - ZIP code: users[0].address.zip
 ---
 # user_ask_role question using AL
@@ -180,3 +180,13 @@ generic object: ALDocumentBundle
 template: x.get_email_copy
 content: |
   Get a copy of your forms by email
+---
+generic object: ALAddress
+template: x.unit_label
+content: |
+  Address line 2
+---
+generic object: ALAddress
+template: x.postal_code_label
+content: |
+  ZIP Code

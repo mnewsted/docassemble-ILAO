@@ -172,7 +172,7 @@ subquestion: |
   * ${'<a class="xyz" href="' + interview_url(i=current_interview_url, session=interview['session']) + '">' +  interview['title'] +  (' (' + interview.get("subtitle",'') + ')' if interview.get('subtitle') else '')  +"</a>" }  Last visited ${format_date(interview['modtime'])}, currently on page **${interview['dict'].get('_internal',{}).get('steps')}**
   % endfor
   
-  [View all of your saved online forms](${url_of('interviews')})
+  [**View all of your saved Easy Forms**](${url_of('interviews')})
 ---
 # added 11-1-2021 to customize email ALDocumentBundle forms functionality
 ---

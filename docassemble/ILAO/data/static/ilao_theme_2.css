@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
-.btn, .nav-link, .progress, .nav-pills .nav-link  {
+.btn, .nav-pills .nav-link, .progress, .nav-pills, .nav-link {
   border-radius: 0;
 }
 
@@ -155,6 +155,26 @@ div.progress-bar {
 
 .text-info {
     color: #0079d0;
+}
+
+footer a {
+    color: #0079d0;
+}
+
+.page-item:first-child .page-link {
+    border-radius: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.page-item:last-child .page-link {
+    border-radius: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 /* Set this css variable in an scss file

@@ -1,0 +1,175 @@
+# do i need to add this?
+---
+metadata:
+  title: |
+    In progress
+  short title: |
+    In progress
+  temporary session: True
+  title url: https://www.illinoislegalaid.org 
+  exit url: https://www.illinoislegalaid.org  
+---
+modules:
+  - docassemble.AssemblyLine.sessions
+  - docassemble.ALToolbox.misc
+---
+# Clear some Playground invalid variable reference errors
+objects:
+  - ex: DAEmpty
+  - interview_metadata: DAEmpty
+  - other_parties: DAEmpty
+  - users: DAEmpty
+
+# added above 9/7/22
+
+
+include:
+  #- docassemble.AssemblyLine:assembly_line.yml
+  - docassemble.AssemblyLine:interview_list.yml
+---
+features:
+  css:
+    - ilao_theme_2.css
+    - interview_list.css     
+---
+code: |
+  al_logo.alt_text = "ILAO Logo"
+
+---
+default screen parts:
+
+  logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="${ al_logo.alt_text }"/>
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ "In progress" }</div>
+        <div class="title-row-2">${ "Easy Forms" }</div>
+      </div>
+    </div> 
+  short logo: |
+    <div class="title-container">
+      <div class="al-logo">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="${ al_logo.alt_text }"/>
+      </div>
+      <div class="al-title">
+        <div class="title-row-1">${ "In progress" }</div>
+        <div class="title-row-2">${ "Easy Forms" }</div>
+      </div>
+    </div>
+
+---
+mandatory: True
+code: |
+  section_in_progress_forms
+
+---
+event: section_in_progress_forms
+id: interview list
+question: |
+  % if get_config("interview page heading"):
+  ${ get_config("interview page heading") }
+  % else:
+  Easy Forms in progress 
+  % endif
+subquestion: |
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename)) > 0:
+  % if get_config("interview page pre"):
+  ${ get_config("interview page pre") }
+  % else:
+  Click the name of an Easy Form to keep working on it or to download your completed forms.
+  
+  Use the tag action :tag: to add a description. 
+  % endif
+  
+  ${ session_list_html(filename=None, name_label = "Easy Form", rename_label = "Add or edit label", limit=20, offset=session_page*20) }
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+  % if session_page > 0:
+      <li class="page-item"><a class="page-link" href="${ url_action("update_page_event", page_increment=-1) }">Previous</a></li>
+  % endif
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename, limit=20, offset=session_page*20)) >= 20:
+      <li class="page-item"><a class="page-link" href="${ url_action("update_page_event", page_increment=1) }">Next</a></li>
+  % endif
+    </ul>
+  </nav>  
+  % else:
+  You do not have any current forms in progress.
+  % endif
+  
+section: section_in_progress_forms
+under: |
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename)) > 0:
+  <div style="float: right;">
+  ${ action_button_html(url_action("interview_list_delete_all"), label="Delete All", size="md", color="danger", icon="trash-can", id_tag="al-delete-all-sessions") }
+  </div>
+  % endif
+script:
+  <script type="text/javascript">
+      $(".al-delete-session").on('click', function(event){
+        if (confirm("${ word("Are you sure you want to delete this item?") }")){
+          return true;
+        }
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return false;
+      });
+      $("#al-delete-all-sessions").on('click', function(event){
+        if (confirm("${ word("Are you sure you want to delete ALL saved interviews?") }")){
+          return true;
+        }
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return false;
+      });
+  </script>  
+---
+code: |
+  session_page = 0
+---
+event: update_page_event
+code: |
+  session_page += action_argument("page_increment")
+---
+id: rename answer
+question: |
+  Add or edit a label to saved answers
+fields:
+  - Label: al_sessions_snapshot_new_label
+    default: ${ action_argument("title") or "" }
+continue button label: |
+  :save: Update label
+features:
+  question back button: True  
+---
+#added the following at the end of day 9-7-22
+---
+code: |
+  rename_interview_answers(user_info().filename, user_info().session, new_name = al_sessions_snapshot_new_label)
+  log("New name saved", "success")
+  al_sessions_rename_session = True
+---
+code: |
+  al_sessions_snapshot_new_label
+  try:
+      rename_interview_answers(action_argument("filename"), action_argument("session"), new_name = al_sessions_snapshot_new_label)
+      log(f"New name saved", "success")
+  except:
+      log("Problem saving new name", "danger")
+  interview_list_rename_action = True
+---
+code: |
+  interview_list(action="delete", filename=action_argument("filename"), session=action_argument("session"))  
+  log("Deleted answers", "success")
+  interview_list_delete_session = True
+---
+code: |
+  try:
+      interview_list(action="delete_all", query=(~DA.Or(DA.Sessions.filename == f"{user_info().current_package}:al_saved_sessions_store.yml", DA.Sessions.filename == "docassemble.AssemblyLine:data/questions/al_saved_sessions_store.yml")))
+      log("Deleted answers", "success")
+  except Exception as ex:
+      log("Problem deleting answers", "danger")
+      log(f"Problem deleting answers for a user: {ex}")
+  interview_list_delete_all = True

@@ -25,7 +25,6 @@ objects:
 ---
 
 include:
-  #- docassemble.AssemblyLine:assembly_line.yml
   - docassemble.AssemblyLine:interview_list.yml
 ---
 features:
@@ -36,26 +35,8 @@ features:
 code: |
   al_logo.alt_text = "ILAO Logo"
 ---
-
-# added these 4 lines of code 11/9/22
-#---
-#code: |
-#  al_app_name = get_config('appname', get_config('external hostname','www.illinoislegalaid.org'))
-#---
-#code: |
-#  AL_ORGANIZATION_TITLE = 'ILAO Easy Forms'
-#  #AL_ORGANIZATION_TITLE = get_config('appname', 'ILAO Easy Forms')
-#---
-#code: |
-#  AL_ORGANIZATION_HOMEPAGE = 'https://www.illinoislegalaid.org'
-#  #AL_ORGANIZATION_HOMEPAGE = get_config('app homepage', 'https://www.illinoislegalaid.org')
-#---
-#code: |
-#  appname = 'Easy Forms in progress'
-
----
 default screen parts:
-
+  title: Easy Forms in progress
   logo: |
     <div class="title-container">
       <div class="al-logo">

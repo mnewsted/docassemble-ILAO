@@ -22,6 +22,7 @@ objects:
 
 # added above 9/7/22
 
+---
 
 include:
   #- docassemble.AssemblyLine:assembly_line.yml
@@ -34,6 +35,23 @@ features:
 ---
 code: |
   al_logo.alt_text = "ILAO Logo"
+---
+
+# added these 4 lines of code 11/9/22
+#---
+#code: |
+#  al_app_name = get_config('appname', get_config('external hostname','www.illinoislegalaid.org'))
+#---
+#code: |
+#  AL_ORGANIZATION_TITLE = 'ILAO Easy Forms'
+#  #AL_ORGANIZATION_TITLE = get_config('appname', 'ILAO Easy Forms')
+#---
+#code: |
+#  AL_ORGANIZATION_HOMEPAGE = 'https://www.illinoislegalaid.org'
+#  #AL_ORGANIZATION_HOMEPAGE = get_config('app homepage', 'https://www.illinoislegalaid.org')
+#---
+#code: |
+#  appname = 'Easy Forms in progress'
 
 ---
 default screen parts:
@@ -80,7 +98,7 @@ subquestion: |
   % else:
   Click the name of an Easy Form to keep working on it or to download your completed forms.
   
-  Use the tag action :tag: to add a description. 
+  Use the tag action :tag: to add or edit a description. 
   % endif
   
   ${ session_list_html(filename=None, name_label = "Easy Form", rename_label = "Add or edit label", limit=20, offset=session_page*20) }

@@ -34,9 +34,12 @@ features:
 ---
 code: |
   al_logo.alt_text = "ILAO Logo"
+  # AL_ORGANIZATION_TITLE assigned here to overwrite CourtFormsOnline
+  AL_ORGANIZATION_TITLE = "ILAO Easy Forms"
 ---
 default screen parts:
   title: Easy Forms in progress
+  # title assigned here to rename page title in the browser
   logo: |
     <div class="title-container">
       <div class="al-logo">
@@ -62,7 +65,10 @@ default screen parts:
 mandatory: True
 code: |
   section_in_progress_forms
-
+---
+# added code to exclude interviews
+code: |
+  al_sessions_to_exclude_from_interview_list = get_config("assembly line", {}).get("exclude from interview list")
 ---
 event: section_in_progress_forms
 id: interview list
@@ -73,7 +79,7 @@ question: |
   Easy Forms in progress 
   % endif
 subquestion: |
-  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename)) > 0:
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename, exclude_filenames=al_sessions_to_exclude_from_interview_list, exclude_newly_started_sessions=True)) > 0:
   % if get_config("interview page pre"):
   ${ get_config("interview page pre") }
   % else:
@@ -81,15 +87,15 @@ subquestion: |
   
   Use the tag action :tag: to add or edit a description. 
   % endif
-  
-  ${ session_list_html(filename=None, name_label = "Easy Form", rename_label = "Add or edit label", limit=20, offset=session_page*20) }
+
+  ${ session_list_html(filename=None, limit=20, offset=session_page*20, exclude_filenames=al_sessions_to_exclude_from_interview_list, exclude_newly_started_sessions=True) }
 
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
   % if session_page > 0:
       <li class="page-item"><a class="page-link" href="${ url_action("update_page_event", page_increment=-1) }">Previous</a></li>
   % endif
-  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename, limit=20, offset=session_page*20)) >= 20:
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename, exclude_filenames=al_sessions_to_exclude_from_interview_list, limit=20, offset=session_page*20, exclude_newly_started_sessions=True)) >= 20:
       <li class="page-item"><a class="page-link" href="${ url_action("update_page_event", page_increment=1) }">Next</a></li>
   % endif
     </ul>
@@ -100,7 +106,7 @@ subquestion: |
   
 section: section_in_progress_forms
 under: |
-  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename)) > 0:
+  % if len(get_saved_interview_list(filename=None, filename_to_exclude=al_session_store_default_filename, exclude_filenames=al_sessions_to_exclude_from_interview_list)) > 0:
   <div style="float: right;">
   ${ action_button_html(url_action("interview_list_delete_all"), label="Delete All", size="md", color="danger", icon="trash-can", id_tag="al-delete-all-sessions") }
   </div>

@@ -13,7 +13,7 @@ include:
   - docassemble.ILAO:shared-basic-questions.yml
 ---
 terms: 
-  - "Easy Forms :question-circle:": |
+  - "Easy Forms": |
       Easy Forms make it easy to create legal forms and letters. They guide you through a simple interview. You answer questions, and the program does the work.
 ---
 features:
@@ -50,6 +50,6 @@ mandatory: True
 question: |
   **ILAO Easy Forms**
 subquestion: |
-  Thank you for your interest in Illinois Legal Aid Online **{Easy Forms :question-circle:}**.
+  Thank you for your interest in Illinois Legal Aid Online **{Easy Forms}**.
 
   Looking for forms? Check out the [ILAO Form Library](https://www.illinoislegalaid.org/form-library).

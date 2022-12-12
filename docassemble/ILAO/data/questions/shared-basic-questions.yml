@@ -65,6 +65,13 @@ terms:
       A written Demand for immediate possession tells the person that they have no right to be on the property and must leave. The Demand should be given to the occupant before an eviction case is filed.
   - "Eviction Order": |
       An Eviction Order gives the possession of the property to the landlord. It can order tenants to leave the property by a specific date. If the tenants do not leave by that date, the landlord can have the sheriff remove the tenants from the property. Eviction Orders can also award a landlord a money judgment for rent, court costs, or lawyers' fees.
+  - "circuit court clerk": |
+      The office that takes care of files and documents for circuit court cases.
+  - "appellate court clerk": |
+      The office that takes care of files and documents for appellate court cases.
+  - "Supreme Court clerk": |
+      The office that takes care of files and documents for Supreme Court cases.     
+
 
 ---
 id: your name
@@ -192,3 +199,23 @@ generic object: ALDocumentBundle
 template: x.get_email_copy
 content: |
   Get a copy of your forms by email
+---
+id: start a new session
+question: |
+  Do you want to start over?
+subquestion: |
+  % if not user_logged_in():
+  You may lose access to your current answers. Make sure you have downloaded
+  any forms that you need.
+  % else:
+  You can still access your current answers by visiting the "My interviews"
+  page.
+  % endif
+  
+  Click **Start over** to start a new copy of the form you are working on,
+  or **Back** if you want to keep working.
+back button label: |
+  Back
+continue button label: |
+  Start over
+continue button field: al_start_over_confirmation

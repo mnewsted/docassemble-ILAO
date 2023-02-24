@@ -11,8 +11,6 @@ modules:
   - .ilao_tools
 ---
 features:
-  javascript: force_lightmode.js
-  # added to force lightmode until bootstrap 5.3 style with light/dark themes ready
   progress bar: True
   navigation: True
   navigation back button: False

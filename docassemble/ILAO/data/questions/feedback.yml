@@ -14,7 +14,6 @@ modules:
   - .ilao_easy_forms_database
 ---
 features:
-  javascript: force_lightmode.js
   css: ilao_theme_2.css
 ---
 default screen parts:

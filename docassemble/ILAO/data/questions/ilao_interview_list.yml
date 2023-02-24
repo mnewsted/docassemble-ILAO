@@ -28,7 +28,6 @@ include:
   - docassemble.AssemblyLine:interview_list.yml
 ---
 features:
-  javascript: force_lightmode.js
   css:
     - ilao_theme_2.css
     - interview_list.css     

@@ -17,7 +17,6 @@ terms:
       Easy Forms make it easy to create legal forms and letters. They guide you through a simple interview. You answer questions, and the program does the work.
 ---
 features:
-  javascript: force_lightmode.js
   css: ilao_theme_2.css
   question back button: True
 ---

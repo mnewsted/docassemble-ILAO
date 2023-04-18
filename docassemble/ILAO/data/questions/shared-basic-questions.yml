@@ -3,7 +3,7 @@ objects:
   - form: DADict
   - user: Individual
   - debt_collector: Individual
-
+  - court_list: ALCourtLoader.using(file_name='docassemble.ILAO:data/sources/il_courts.xlsx')
   - landlord: ALIndividual
   - property_manager: ALIndividual
 
@@ -219,3 +219,124 @@ back button label: |
 continue button label: |
   Start over
 continue button field: al_start_over_confirmation
+---
+#See documentation on county functionality
+generic object: ALAddress
+code: |  
+  if is_illinois_county(x) == True:
+    if county_in_list(x.county) == False:
+      x.trial_court_index
+      x.county = trial_court.address.county + " County" 
+    else:
+      x.county = end_in_county(x.county)
+  else:
+    x.county = end_in_county(x.county)
+  x.county_correct = True
+---
+depends on:
+  - x.county
+generic object: ALAddress
+id: county dropdown
+question: |
+  What county is ${x.on_one_line()} in?
+subquestion: |
+  We could not find the county for ${ x.on_one_line(bare=True) } in the list of Illinois counties, but you can select it here.
+
+  ${ collapse_template(county_lookup_help) }
+fields:
+  - no label: x.trial_court_index
+    code: |
+      court_county_lookup()
+validation code: |
+  if x.trial_court_index == "-1":
+    trial_court = court_list.as_court('trial_court', 15)
+  else:
+    trial_court = court_list.as_court('trial_court', x.trial_court_index)
+---
+template: county_lookup_help
+subject: |
+  **How do I look up the county?**
+content: |  
+  You can use this **[City-to-County Finder](https://www.statsamerica.org/CityCountyFinder/)** to find the county.
+---
+code: |
+  def court_county_lookup(lowercase=False):
+    all_court_counties = court_list._load_courts()['address_county'].items()
+    filtered_courts = [(-1, "cook")] if lowercase else [(-1, "Cook")]
+    for court in all_court_counties:
+      if court[1] != "Cook":
+        court_name = court[1].lower() if lowercase else court[1]
+        filtered_courts.append((court[0],court_name))
+    return sorted( filtered_courts, key=lambda y: y[1])
+---
+code: |
+  def is_illinois_county(address_input):
+    if address_input.state == "IL":
+      return True
+    else:    
+      return False
+---
+code: |
+  def county_in_list(input_county):
+    county_name_storage = input_county.lower()
+    if county_name_storage.endswith (" county"):
+      county_name_storage = input_county.lower()[0:-7]
+    county_found_storage = False
+    for item in get_county_list():
+      if county_name_storage == str(item).lower():
+        county_found_storage = True
+    if county_found_storage == True:
+      return True
+    else:
+      return False
+---
+code: |
+  def end_in_county(input_county):
+    input_lowercase = input_county.lower()
+    if input_lowercase.endswith (" county"):
+      return input_county
+    else:
+      return input_county + " County" 
+---
+code: |
+  def get_county_list(lowercase=False):
+    county_list = [*set(court_list._load_courts()['address_county'])]
+    county_list.sort()
+    return county_list
+---
+code: |
+  def check_for_cook(input_address):
+    if input_address.county.lower()[:4] == "cook":
+      return True
+    else:
+      return False
+---
+id: accept terms
+question: |
+  Terms of use
+subquestion: |
+  This program does not provide legal advice. It does not take the place of advice from a lawyer.
+
+  Using this program does not create an attorney-client relationship between you and Illinois Legal Aid Online or its employees.
+
+  ${ collapse_template(get_legal_help) }  
+
+fields:
+  - To continue, you must accept the [**terms of use**](https://www.illinoislegalaid.org/about/terms-of-use).: accept
+    datatype: checkboxes
+    none of the above: False
+    minlength: 1
+    choices:
+      - I accept the terms of use.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to the terms of use. 
+continue button field: accept_terms
+---
+template: get_legal_help
+subject: |
+  **What if I need legal advice?**
+content: |  
+  If you have questions or concerns about your legal problem and want legal advice you should talk to a lawyer.
+  
+  Use [**Get Legal Help**](https://www.illinoislegalaid.org/get-legal-help) to find free or low-cost legal services in your area.

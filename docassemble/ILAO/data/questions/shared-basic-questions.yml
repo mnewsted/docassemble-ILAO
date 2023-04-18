@@ -293,7 +293,7 @@ code: |
 code: |
   def end_in_county(input_county):
     input_lowercase = input_county.lower()
-    if input_lowercase.endswith (" county"):
+    if input_lowercase.endswith(" county"):
       return input_county
     else:
       return input_county + " County" 
@@ -340,3 +340,41 @@ content: |
   If you have questions or concerns about your legal problem and want legal advice you should talk to a lawyer.
   
   Use [**Get Legal Help**](https://www.illinoislegalaid.org/get-legal-help) to find free or low-cost legal services in your area.
+
+---
+id: custom error action
+event: al_custom_error_action
+decoration: bug
+question: |
+  Something went wrong
+subquestion: |
+  We ran into an error when we tried to load this screen.
+  You can try one of these steps to recover your work:
+  
+  * Click **Back** and try again,
+  * [:comment-dots: **Tell us what happened**](${ interview_url(i="docassemble.ILAO:feedback.yml", easy_form_interview=ilao_easy_form_url , easy_form_title=ilao_easy_form_title, easy_form_page=user_info().question_id, easy_form_variable=user_info().variable, easy_form_error_message=action_argument('error_message'), local=False,reset=1) }){target="_blank"}, or
+  * Visit the [**ILAO Form Library**](https://www.illinoislegalaid.org/form-library) and try another Easy Form.
+  
+  ${ collapse_template(al_formatted_error_message) }
+buttons:
+  - Exit: exit
+  - Restart: restart
+  
+---
+template: al_formatted_error_message
+subject: |
+  **Technical information**
+content: |
+  <h2 class="h4">${ word("Error") }</h2>
+  ${ action_argument('error_message') }
+  % if get_config("debug") and action_argument("error_history"):
+  <h2 class="h4">${ word("History") }</h2>
+  <pre>
+  ${ action_argument("error_history") }
+  </pre>
+  % endif
+  % if get_config("debug") and action_argument("error_trace"):
+  <h2 class="h4">${ word("Log") }</h2>
+  ${ indent(action_argument("error_trace")) }
+  % endif
+---

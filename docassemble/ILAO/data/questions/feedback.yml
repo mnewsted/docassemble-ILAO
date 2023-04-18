@@ -1,8 +1,8 @@
 metadata:
   title: Feedback
   short title: Feedback
-  #logo: |
-  #  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli"><img src="/packagestatic/docassemble.ILAO/ilao.logo.noname.25.png" class="ilao_icon" alt="ILAO Icon"><h1 style="display:inline; font-family: 'Muli'; margin:10px;font-size:20px;color:#fff">Feedback</h1>
+  title url: https://www.illinoislegalaid.org 
+  exit url: https://www.illinoislegalaid.org
 ---
 include:
   - docassemble.AssemblyLine:assembly_line.yml
@@ -20,7 +20,7 @@ default screen parts:
   logo: |
     <div class="title-container">
       <div class="al-logo">
-        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="ILAO logo">
       </div>
       <div class="al-title">
         <div class="title-row-1">${ all_variables(special='metadata').get('title','').rstrip() }</div>
@@ -30,7 +30,7 @@ default screen parts:
   short logo: |
     <div class="title-container">
       <div class="al-logo">
-        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg">
+        <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="ILAO logo">
       </div>
       <div class="al-title">
         <div class="title-row-1">${ all_variables(special='metadata').get('short title','').rstrip() }</div>
@@ -118,6 +118,12 @@ content: |
   Interview page: ${ url_args.get('easy_form_page') }
   
   Variable sought (if any): ${ url_args.get('easy_form_variable') }
+
+  Error message: ${ url_args.get('easy_form_error_message') }
+  
+  Error history: ${ url_args.get('easy_form_error_history') }
+
+  Error trace: ${ url_args.get('easy_form_error_trace') }
   
 ---
 code: |

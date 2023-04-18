@@ -13,3 +13,10 @@ def list_defendants(users, other_parties, any_opposing, party_label):
       return other_parties
     else:
       return ""
+    
+  def end_in_county(input_county):
+    input_lowercase = input_county.lower()
+    if input_lowercase.endswith(" county"):
+      return input_county
+    else:
+      return input_county + " County" 

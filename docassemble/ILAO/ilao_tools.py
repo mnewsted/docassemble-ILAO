@@ -35,7 +35,7 @@ def is_illinois_county(address_input):
     return True
   else:    
     return False
-  
+"""  
 def county_in_list(input_county):
   county_name_storage = input_county.lower()
   if county_name_storage.endswith (" county"):
@@ -53,7 +53,7 @@ def get_county_list(lowercase=False):
   county_list = [*set(court_list._load_courts()['address_county'])]
   county_list.sort()
   return county_list
-
+"""
 def check_for_cook(input_address):
   if input_address.county.lower()[:4] == "cook":
     return True

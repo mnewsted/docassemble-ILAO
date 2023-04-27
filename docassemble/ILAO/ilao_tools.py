@@ -21,7 +21,8 @@ def end_in_county(input_county):
   else:
     return input_county + " County" 
 """
-def court_county_lookup(lowercase=False):
+"""
+def court_county_lookup(court_list, lowercase=False):
   all_court_counties = court_list._load_courts()['address_county'].items()
   filtered_courts = [(-1, "cook")] if lowercase else [(-1, "Cook")]
   for court in all_court_counties:
@@ -30,18 +31,20 @@ def court_county_lookup(lowercase=False):
       filtered_courts.append((court[0],court_name))
   return sorted( filtered_courts, key=lambda y: y[1])
 """
+"""
 def is_illinois_county(address_input):
   if address_input.state == "IL":
     return True
   else:    
     return False
 """  
-def county_in_list(input_county):
+"""
+def county_in_list(court_list, input_county):
   county_name_storage = input_county.lower()
   if county_name_storage.endswith (" county"):
     county_name_storage = input_county.lower()[0:-7]
   county_found_storage = False
-  for item in get_county_list():
+  for item in get_county_list(court_list):
     if county_name_storage == str(item).lower():
       county_found_storage = True
   if county_found_storage == True:
@@ -49,10 +52,11 @@ def county_in_list(input_county):
   else:
     return False
   
-def get_county_list(lowercase=False):
+def get_county_list(court_list, lowercase=False):
   county_list = [*set(court_list._load_courts()['address_county'])]
   county_list.sort()
   return county_list
+"""
 """
 def check_for_cook(input_address):
   if input_address.county.lower()[:4] == "cook":

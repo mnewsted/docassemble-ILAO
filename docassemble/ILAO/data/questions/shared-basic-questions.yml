@@ -246,7 +246,7 @@ subquestion: |
 fields:
   - no label: x.trial_court_index
     code: |
-      court_county_lookup(court_list)
+      ilao_court_county_lookup(court_list)
 validation code: |
   if x.trial_court_index == "-1":
     trial_court = court_list.as_court('trial_court', 15)
@@ -258,58 +258,6 @@ subject: |
   **How do I look up the county?**
 content: |  
   You can use this **[City-to-County Finder](https://www.statsamerica.org/CityCountyFinder/)** to find the county.
----
-#code: |
-#  def court_county_lookup(courlowercase=False):
-#    all_court_counties = court_list._load_courts()['address_county'].items()
-#    filtered_courts = [(-1, "cook")] if lowercase else [(-1, "Cook")]
-#    for court in all_court_counties:
-#      if court[1] != "Cook":
-#        court_name = court[1].lower() if lowercase else court[1]
-#        filtered_courts.append((court[0],court_name))
-#    return sorted( filtered_courts, key=lambda y: y[1])
-#---
-#code: |
-#  def is_illinois_county(address_input):
-#    if address_input.state == "IL":
-#      return True
-#    else:    
-#      return False
-#---
-#code: |
-#  def county_in_list(court_list, input_county):
-#    county_name_storage = input_county.lower()
-#    if county_name_storage.endswith (" county"):
-#      county_name_storage = input_county.lower()[0:-7]
-#    county_found_storage = False
-#    for item in get_county_list(court_list):
-#      if county_name_storage == str(item).lower():
-#        county_found_storage = True
-#    if county_found_storage == True:
-#      return True
-#    else:
-#      return False
-#---
-#code: |
-#  def end_in_county(input_county):
-#    input_lowercase = input_county.lower()
-#    if input_lowercase.endswith(" county"):
-#      return input_county
-#    else:
-#      return input_county + " County" 
-#---
-#code: |
-#  def get_county_list(court_list, lowercase=False):
-#    county_list = [*set(court_list._load_courts()['address_county'])]
-#    county_list.sort()
-#    return county_list
-#---
-#code: |
-#  def check_for_cook(input_address):
-#    if input_address.county.lower()[:4] == "cook":
-#      return True
-#    else:
-#      return False
 ---
 id: accept terms
 question: |

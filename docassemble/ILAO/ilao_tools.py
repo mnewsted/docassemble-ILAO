@@ -22,7 +22,7 @@ def end_in_county(input_county):
     return input_county + " County" 
 """
 """
-def court_county_lookup(court_list, lowercase=False):
+def ilao_court_county_lookup(court_list, lowercase=False):
   all_court_counties = court_list._load_courts()['address_county'].items()
   filtered_courts = [(-1, "cook")] if lowercase else [(-1, "Cook")]
   for court in all_court_counties:
@@ -44,7 +44,7 @@ def county_in_list(court_list, input_county):
   if county_name_storage.endswith (" county"):
     county_name_storage = input_county.lower()[0:-7]
   county_found_storage = False
-  for item in get_county_list(court_list):
+  for item in ilao_get_county_list(court_list):
     if county_name_storage == str(item).lower():
       county_found_storage = True
   if county_found_storage == True:
@@ -52,7 +52,7 @@ def county_in_list(court_list, input_county):
   else:
     return False
   
-def get_county_list(court_list, lowercase=False):
+def ilao_get_county_list(court_list, lowercase=False):
   county_list = [*set(court_list._load_courts()['address_county'])]
   county_list.sort()
   return county_list

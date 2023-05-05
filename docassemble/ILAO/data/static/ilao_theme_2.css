@@ -177,6 +177,52 @@ footer a {
     border-bottom-left-radius: 0px;
 }
 
+.daquestionbackbutton {
+    font-weight: bold;
+}
+
+.danav-vertical .danavlink { 
+  color: #0079d0
+} 
+
+/* dev only */
+.danavbarcontainer .btn-link {
+    color: var(--bs-nav-link-color);
+}
+
+.danavbarcontainer .btn-link:hover {
+    color: var(--bs-nav-link-hover-color);
+}
+
+
+/*
+Added 5.5.2023
+*/
+
+.da-review-button {
+  border-radius: 0;
+}
+
+.form-select {
+  border-radius: 0;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+
+.dropdown-menu {
+  --bs-dropdown-border-radius: 0;
+}
+
+.al_three_parts_date .col > * {
+  width: 100%;
+}
+
+* {
+  border-radius: 0 !important;
+}
 
   
 /* Set this css variable in an scss file

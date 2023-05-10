@@ -224,6 +224,14 @@ Added 5.5.2023
   border-radius: 0 !important;
 }
 
+.radialProgressBar {
+  border-radius: 50% !important;
+}
+
+.radialProgressBar .overlay {
+  border-radius: 50% !important;
+}
+
   
 /* Set this css variable in an scss file
 :root {

@@ -78,12 +78,6 @@ fields:
       - ":thumbs-up: I like this program": like
       - ":thumbs-down: I don't like this program": don't like
     required: False
-  - note: How likely are you to recommend ILAO? (0 = not likely, 10 = very likely)
-  - Recommend: recommend
-    datatype: range
-    min: 0
-    max: 10
-    default: 0
   - Email: user.email
     datatype: email
     required: False
@@ -110,8 +104,6 @@ content: |
   User feedback: ${ feedback }
   
   Rating: ${ rating }
-
-  Likely to recommend ILAO (0-10, default 0): ${ recommend }
 
   --- Debug info ---
 

@@ -270,15 +270,15 @@ subquestion: |
   ${ collapse_template(get_legal_help) }  
 
 fields:
-  - To continue, you must accept the [**terms of use**](https://www.illinoislegalaid.org/about/terms-of-use).: accept
+  - To continue, you must accept the [**terms of use**](https://www.illinoislegalaid.org/about/terms-of-use) and [**privacy policy**](https://www.illinoislegalaid.org/about/privacy-policy).: accept
     datatype: checkboxes
     none of the above: False
     minlength: 1
     choices:
-      - I accept the terms of use.
+      - I accept the terms of use and privacy policy.
     validation messages:
       minlength: |
-        You cannot continue unless you agree to the terms of use. 
+        You cannot continue unless you agree to the terms of use and privacy policy.
 continue button field: accept_terms
 ---
 template: get_legal_help

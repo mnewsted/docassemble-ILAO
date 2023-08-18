@@ -112,11 +112,7 @@ content: |
   Variable sought (if any): ${ url_args.get('easy_form_variable') }
 
   Error message: ${ url_args.get('easy_form_error_message') }
-  
-  Error history: ${ url_args.get('easy_form_error_history') }
-
-  Error trace: ${ url_args.get('easy_form_error_trace') }
-  
+ 
 ---
 code: |
   email_sent_ok = send_email(to="formsupport@illinoislegalaid.org", template=forms_email)

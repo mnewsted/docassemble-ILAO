@@ -38,7 +38,7 @@ code: |
   AL_ORGANIZATION_TITLE = "ILAO Easy Forms"
 ---
 default screen parts:
-  title: Easy Forms in progress
+  title: My Easy Forms
   # title assigned here to rename page title in the browser
   logo: |
     <div class="title-container">
@@ -46,8 +46,8 @@ default screen parts:
         <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="${ al_logo.alt_text }"/>
       </div>
       <div class="al-title">
-        <div class="title-row-1">${ "In progress" }</div>
-        <div class="title-row-2">${ "Easy Forms" }</div>
+        <div class="title-row-1">${ "My Easy Forms" }</div>
+        <div class="title-row-2">${ "In progress" }</div>
       </div>
     </div> 
   short logo: |
@@ -56,8 +56,8 @@ default screen parts:
         <img src="/packagestatic/docassemble.ILAO/logo_white_30.svg" alt="${ al_logo.alt_text }"/>
       </div>
       <div class="al-title">
-        <div class="title-row-1">${ "In progress" }</div>
-        <div class="title-row-2">${ "Easy Forms" }</div>
+        <div class="title-row-1">${ "My Easy Forms" }</div>
+        <div class="title-row-2">${ "In progress" }</div>
       </div>
     </div>
 

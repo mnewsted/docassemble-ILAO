@@ -326,3 +326,12 @@ content: |
   ${ indent(action_argument("error_trace")) }
   % endif
 ---
+generic object: ALAddress
+template: x.unit_label
+content: |
+  Address line 2
+---
+generic object: ALAddress
+template: x.postal_code_label
+content: |
+  ZIP Code

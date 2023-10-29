@@ -337,3 +337,10 @@ field: e_signature
 choices:
   - Yes: True
   - No, I will sign my forms later.: False
+---
+template: signature_help
+subject: |
+  **PLACEHOLDER - What does it mean to sign the forms?**
+content: |  
+  Add language in the specific form interview based on the legal requirements of the form.
+---  

@@ -330,7 +330,7 @@ id: signature
 question: |
   Do you want to add your electronic signature?
 subquestion: |
-  This program can put “/s/ ${users[0].name.full(middle='full')}” where you would sign your name. The court will accept this as your signature.
+  This program can put **"/s/ ${users[0].name.full(middle='full')}"** where you would sign your name. The court will accept this as your signature.
 
   ${collapse_template(signature_help)}
 field: e_signature

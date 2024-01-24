@@ -330,13 +330,18 @@ id: signature
 question: |
   Do you want to add your electronic signature?
 subquestion: |
-  This program can put **"/s/ ${users[0].name.full(middle='full')}"** where you would sign your name. The court will accept this as your signature.
+  This program can put "**/s/ ${users[0].name.full(middle='full')}**" where you would sign your name. The court will accept this as your signature.
+  
+  If you do not add your *{e-signature}* now, you must sign your forms before you file them.
 
   ${collapse_template(signature_help)}
 field: e_signature
 choices:
   - Yes: True
   - No, I will sign my forms later.: False
+terms:
+  - "e-signature": |
+      An e-signature is an electronic signature. It is a digital version of a signature that has the same effect as a hand-written signature.
 ---
 template: signature_help
 subject: |

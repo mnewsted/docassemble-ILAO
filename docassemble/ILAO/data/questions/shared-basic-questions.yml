@@ -328,11 +328,11 @@ content: |
 ---
 id: signature
 question: |
-  Do you want to add your electronic signature?
+  Do you want to add your e-signature to your forms?
 subquestion: |
   This program can put "**/s/ ${users[0].name.full(middle='full')}**" where you would sign your name. The court will accept this as your signature.
   
-  If you do not add your *{e-signature}* now, you must sign your forms before you file them.
+  If you do not add your **{e-signature}** now, you must sign your forms before you file them.
 
   ${collapse_template(signature_help)}
 field: e_signature

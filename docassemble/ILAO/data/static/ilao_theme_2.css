@@ -232,6 +232,12 @@ Added 5.5.2023
   border-radius: 50% !important;
 }
 
+.al_collapse_template a.al_toggle,
+.al_display_template a.al_toggle {
+  color: #0079d0; /* ILAO blue */
+  text-decoration: none;
+  text-decoration-line: none;
+}
   
 /* Set this css variable in an scss file
 :root {

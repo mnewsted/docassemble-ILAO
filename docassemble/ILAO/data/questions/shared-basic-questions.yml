@@ -1,4 +1,4 @@
----
+id: ---
 objects:
   - form: DADict
   - user: Individual
@@ -208,7 +208,7 @@ subquestion: |
   You may lose access to your current answers. Make sure you have downloaded
   any forms that you need.
   % else:
-  You can still access your current answers by visiting the "My interviews"
+  You can still access your current answers by visiting the "My Easy Forms"
   page.
   % endif
   

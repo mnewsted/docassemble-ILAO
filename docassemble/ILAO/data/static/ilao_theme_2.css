@@ -238,7 +238,15 @@ Added 5.5.2023
   text-decoration: none;
   text-decoration-line: none;
 }
-  
+
+.ilao-info {
+max-height: unset;
+}
+
+.ilao-info > *:last-child {
+margin-bottom: 0;
+}
+
 /* Set this css variable in an scss file
 :root {
   --bs-dark-rgb: #181C36;

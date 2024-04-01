@@ -43,7 +43,8 @@ default screen parts:
     </div>
     
   under: |
-    Questions or comments? [Contact ILAO](https://www.illinoislegalaid.org/contact-us).
+    Questions or comments? [**Contact ILAO**](https://www.illinoislegalaid.org/contact-us).
+  footer: off
 ---
 id: home
 mandatory: True

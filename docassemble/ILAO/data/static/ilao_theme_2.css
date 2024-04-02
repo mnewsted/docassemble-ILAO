@@ -247,6 +247,12 @@ max-height: unset;
 margin-bottom: 0;
 }
 
+.CodeMirror span, .CodeMirror-gutter-elt {
+  font-family: monospace;
+}
+
+
+
 /* Set this css variable in an scss file
 :root {
   --bs-dark-rgb: #181C36;

@@ -251,6 +251,38 @@ margin-bottom: 0;
   font-family: monospace;
 }
 
+/*
+Section navigation improvements
+Added 5.2.2024
+*/
+
+a.daclickable.danavlink, 
+.dropdown-item.daclickable {
+  color: #0079d0;
+  font-weight: bold;
+}
+
+.danav-vertical {
+  color: var(--bs-secondary-color);
+}
+
+.daclickable.nav-link.active {
+  font-weight: normal;
+}
+
+.danav-vertical .danavlink:not(.daclickable) {
+  color: var(--bs-secondary-color);
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #0079d0;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--bs-dropdown-link-active-color);
+  font-weight: normal;
+}
 
 
 /* Set this css variable in an scss file

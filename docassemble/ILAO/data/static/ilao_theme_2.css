@@ -284,6 +284,10 @@ a.daclickable.danavlink,
   font-weight: normal;
 }
 
+.danav-vertical .danavlink.active:not(.daclickable) {
+  color: #fff;
+}
+
 
 /* Set this css variable in an scss file
 :root {

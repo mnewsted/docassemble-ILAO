@@ -1,4 +1,4 @@
-id: ---
+---
 objects:
   - form: DADict
   - user: Individual
@@ -151,8 +151,8 @@ fields:
   - no label: user_ask_role
     datatype: radio
     choices:
-      - I started the case: plaintiff
-      - I am responding to a case filed against me: defendant
+      - I started the case.: plaintiff
+      - I am responding to a case filed against me.: defendant
   - note: |
       Okay, you are the **Plaintiff** or **Petitioner** in this case. The other 
       side is the Defendant or Respondent.
@@ -348,4 +348,15 @@ subject: |
   **PLACEHOLDER - What does it mean to sign the forms?**
 content: |  
   Add language in the specific form interview based on the legal requirements of the form.
+---
+id: forms assembling
+continue button field: forms_assembling
+question: |
+  Almost done
+subquestion: |
+  After you click **Next**, it may take a few moments to finish making your forms.
+  
+  ###### You do not need to refresh your screen. Hang in there!
+  
+  [NEWLINE]
 ---  

@@ -9,6 +9,7 @@ modules:
   - .toolbox
   - .docs_list
   - .ilao_tools
+  - .ilao_suffix
 ---
 features:
   progress bar: True
@@ -55,11 +56,14 @@ default screen parts:
     % endif
     
     Feedback, suggestions, or comments? [**Let us know**](${ interview_url(i="docassemble.ILAO:feedback.yml", easy_form_interview=ilao_easy_form_url , easy_form_title=ilao_easy_form_title, easy_form_page=user_info().question_id, easy_form_variable=user_info().variable, local=False,reset=1) } ){:target="_blank"}.
+    
+    % if nav.get_section() != "section_intro" and nav.get_section() != "section_intro":
+    ${ action_button_html(url_action('review_answers'), label=':edit: Edit your answers', color='success', size="md") }
+    % endif
   right: |
     % if user_has_saved_answers:
     :bell: Saved answers available!  
 
     ${action_button_html(url_action('load_answer'), icon="folder-open", label=word("View answers"), size="sm" )}
     % endif
-    
   footer: off

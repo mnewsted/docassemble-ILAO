@@ -175,7 +175,7 @@ content: |
   If you are responding to a case or court papers someone else filed, you are the **Defendant** or the **Respondent.**
 ---
 code: |
-  current_interview_url = user_info().filename
+  current_interview_url = current_context().filename
 ---
 code: |
   user_has_saved_answers = len(interview_list(filename=current_interview_url)[0]) > 1 if interview_list(filename=current_interview_url) else False
@@ -300,7 +300,7 @@ subquestion: |
   You can try one of these steps to recover your work:
   
   * Click **Back** and try again,
-  * [:comment-dots: **Tell us what happened**](${ interview_url(i="docassemble.ILAO:feedback.yml", easy_form_interview=ilao_easy_form_url , easy_form_title=ilao_easy_form_title, easy_form_page=user_info().question_id, easy_form_variable=user_info().variable, easy_form_error_message=action_argument('error_message'), local=False,reset=1) }){target="_blank"}, or
+  * [:comment-dots: **Tell us what happened**](${ interview_url(i="docassemble.ILAO:feedback.yml", easy_form_interview=ilao_easy_form_url , easy_form_title=ilao_easy_form_title, easy_form_page=current_context().question_id, easy_form_variable=current_context().variable, easy_form_error_message=action_argument('error_message'), local=False,reset=1) }){target="_blank"}, or
   * Visit the [**ILAO Form Library**](https://www.illinoislegalaid.org/form-library) and try another Easy Form.
   
   ${ collapse_template(al_formatted_error_message) }

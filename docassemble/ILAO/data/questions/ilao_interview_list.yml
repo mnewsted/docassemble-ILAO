@@ -85,7 +85,9 @@ subquestion: |
   % else:
   Click the name of an Easy Form to keep working on it or to download your completed forms.
   
-  Use the tag action :tag: to add or edit a description. 
+  Use the tag action :tag: to add or edit a description.
+  
+  **Note: Easy Forms are deleted after 90 days of inactivity.** If you want to keep them longer, download your forms or resume the Easy Form to reset the activity timer. 
   % endif
 
   ${ session_list_html(filename=None, limit=20, offset=session_page*20, exclude_filenames=al_sessions_to_exclude_from_interview_list, exclude_newly_started_sessions=True) }

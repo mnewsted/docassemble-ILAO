@@ -247,7 +247,7 @@ max-height: unset;
 margin-bottom: 0;
 }
 
-.CodeMirror span, .CodeMirror-gutter-elt {
+.cm-line span, .cm-line, .cm-gutterElement {
   font-family: monospace;
 }
 
@@ -286,6 +286,22 @@ a.daclickable.danavlink,
 
 .danav-vertical .danavlink.active:not(.daclickable) {
   color: #fff;
+}
+
+#daquestion .bg-secondary-subtle {
+    background-color: #f8f9fa !important;
+}
+
+#daquestion .bg-secondary-subtle:hover {
+    background-color: var(--bs-btn-hover-bg) !important;
+}
+
+#daquestion .da-review.bg-secondary-subtle:hover {
+    background-color: #f8f9fa !important;
+}
+
+.text-light-emphasis {
+    color: black !important;
 }
 
 
